@@ -2,7 +2,7 @@ import * as React from "react"
 import { Link, graphql } from "gatsby"
 
 import Bio from "../components/bio"
-import Layout from "../components/layout"
+import Layout from "../components/Layout/index.tsx"
 import Seo from "../components/seo"
 
 const BlogIndex = ({ data, location }) => {
@@ -68,7 +68,7 @@ export default BlogIndex
  *
  * See: https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/
  */
-export const Head = () => <Seo title="B Blog" />
+export const Head = () => <Seo title="iambom.io" />
 
 export const pageQuery = graphql`
   {
