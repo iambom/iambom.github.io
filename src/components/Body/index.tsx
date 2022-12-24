@@ -8,5 +8,9 @@ const Body = () => {
 export default Body
 
 const Container = styled.div`
-  background-color: hotpink;
+  background-color: pink;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  height: 3000px;
 `
