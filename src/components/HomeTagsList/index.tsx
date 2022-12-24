@@ -1,5 +1,5 @@
-import React from "react"
-import styled from "@emotion/styled"
+import styled from '@emotion/styled';
+import React from 'react';
 
 const HomeTagsList = () => {
   return (
@@ -11,10 +11,10 @@ const HomeTagsList = () => {
         <a href="">React Native</a>
       </li>
     </Container>
-  )
-}
+  );
+};
 
-export default HomeTagsList
+export default HomeTagsList;
 
 const Container = styled.ul`
   background-color: cyan;
@@ -22,4 +22,4 @@ const Container = styled.ul`
   position: absolute;
   top: 0;
   left: 0;
-`
+`;
