@@ -1,11 +1,11 @@
-import React from "react"
-import styled from "@emotion/styled"
+import styled from '@emotion/styled';
+import React from 'react';
 
 const Body = () => {
-  return <Container>포스트 리스트</Container>
-}
+  return <Container>포스트 리스트</Container>;
+};
 
-export default Body
+export default Body;
 
 const Container = styled.div`
   background-color: pink;
@@ -13,4 +13,4 @@ const Container = styled.div`
   max-width: 720px;
   margin: 0 auto;
   height: 3000px;
-`
+`;
