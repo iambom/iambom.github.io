@@ -1,21 +1,19 @@
-import React from "react"
-import Body from "../Body"
-import styled from "@emotion/styled"
-import { css } from "@emotion/react"
-import HomeTagsList from "../HomeTagsList"
+import styled from '@emotion/styled';
+import React from 'react';
+
+import Body from '../Body';
 // import { Link } from "gatsby"
 
 const Layout = ({ location, title, children }) => {
   return (
     <Container>
       <div>안녕하세요~ 나는 누구~~ </div>
-      <HomeTagsList />
       <Body />
     </Container>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
 
 const Container = styled.div`
   background-color: beige;
@@ -23,4 +21,4 @@ const Container = styled.div`
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-`
+`;
