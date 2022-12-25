@@ -3,13 +3,12 @@ import React from 'react';
 
 import Body from '../Body';
 import Header from '../Header';
-// import { Link } from "gatsby"
 
-const Layout = ({ location, title, children }) => {
+const Layout = ({ title, children }) => {
   return (
     <Container>
       <Header title={title} />
-      <Body />
+      <Body>{children}</Body>
     </Container>
   );
 };

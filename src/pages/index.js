@@ -1,8 +1,10 @@
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import * as React from 'react';
 
 import Bio from '../components/bio';
+import HomeTagsList from '../components/HomeTagsList';
 import Layout from '../components/Layout/index.tsx';
+import PostsList from '../components/PostsList';
 import Seo from '../components/seo';
 
 const BlogIndex = ({ data, location }) => {
@@ -24,7 +26,9 @@ const BlogIndex = ({ data, location }) => {
   return (
     <Layout location={location} title={siteTitle}>
       <Bio />
-      <ol style={{ listStyle: `none` }}>
+      <HomeTagsList />
+      <PostsList />
+      {/* <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
           const title = post.frontmatter.title || post.fields.slug;
 
@@ -51,7 +55,7 @@ const BlogIndex = ({ data, location }) => {
             </li>
           );
         })}
-      </ol>
+      </ol> */}
     </Layout>
   );
 };

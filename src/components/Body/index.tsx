@@ -1,16 +1,8 @@
 import styled from '@emotion/styled';
 import React from 'react';
 
-import Contents from '../Contents';
-import HomeTagsList from '../HomeTagsList';
-
-const Body = () => {
-  return (
-    <Container>
-      <HomeTagsList />
-      <Contents />
-    </Container>
-  );
+const Body = ({ children }) => {
+  return <Container>{children}</Container>;
 };
 
 export default Body;
