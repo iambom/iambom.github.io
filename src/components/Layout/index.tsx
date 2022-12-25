@@ -2,12 +2,13 @@ import styled from '@emotion/styled';
 import React from 'react';
 
 import Body from '../Body';
+import Header from '../Header';
 // import { Link } from "gatsby"
 
 const Layout = ({ location, title, children }) => {
   return (
     <Container>
-      <div>안녕하세요~ 나는 누구~~ </div>
+      <Header title={title} />
       <Body />
     </Container>
   );
@@ -20,4 +21,6 @@ const Container = styled.div`
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
+  position: relative;
+  padding-top: 60px;
 `;
