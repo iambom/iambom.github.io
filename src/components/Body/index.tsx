@@ -1,8 +1,16 @@
 import styled from '@emotion/styled';
 import React from 'react';
 
+import Contents from '../Contents';
+import HomeTagsList from '../HomeTagsList';
+
 const Body = () => {
-  return <Container>포스트 리스트</Container>;
+  return (
+    <Container>
+      <HomeTagsList />
+      <Contents />
+    </Container>
+  );
 };
 
 export default Body;
@@ -10,7 +18,6 @@ export default Body;
 const Container = styled.div`
   background-color: pink;
   width: 100%;
-  max-width: 720px;
-  margin: 0 auto;
+  position: relative;
   height: 3000px;
 `;
