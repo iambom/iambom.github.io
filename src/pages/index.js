@@ -22,12 +22,13 @@ const BlogIndex = ({ data, location }) => {
       </Layout>
     );
   }
+  // console.log(posts);
 
   return (
     <Layout location={location} title={siteTitle}>
       <Bio />
       <HomeTagsList />
-      <PostsList />
+      <PostsList posts={posts} />
       {/* <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
           const title = post.frontmatter.title || post.fields.slug;
