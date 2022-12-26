@@ -16,7 +16,6 @@ const Layout = ({ title, children }) => {
 export default Layout;
 
 const Container = styled.div`
-  background-color: beige;
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;

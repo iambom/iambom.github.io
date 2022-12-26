@@ -9,20 +9,18 @@ const PostsList = ({ posts }) => {
         const title = post.frontmatter.title || post.fields.slug;
 
         return (
-          <li key={post.fields.slug}>
-            <h2>
-              <Link to={post.fields.slug} itemProp="url">
-                {title}
-              </Link>
-            </h2>
-            <small>{post.frontmatter.date}</small>
-            <p
-              dangerouslySetInnerHTML={{
-                __html: post.frontmatter.description || post.excerpt,
-              }}
-              itemProp="description"
-            />
-          </li>
+          <StyledLi key={post.fields.slug}>
+            <Link to={post.fields.slug} itemProp="url">
+              <h2>{title}</h2>
+              <small>{post.frontmatter.date}</small>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: post.frontmatter.description || post.excerpt,
+                }}
+                itemProp="description"
+              />
+            </Link>
+          </StyledLi>
         );
       })}
     </Container>
@@ -36,5 +34,14 @@ const Container = styled.div`
   width: 100%;
   max-width: 720px;
   margin: 0 auto;
-  height: 3000px;
+`;
+
+const StyledLi = styled.li`
+  border-bottom: 1px solid #f1f3f5;
+
+  a {
+    display: block;
+    padding: 30px 0;
+    color: black;
+  }
 `;

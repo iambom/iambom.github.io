@@ -8,8 +8,6 @@ const Body = ({ children }) => {
 export default Body;
 
 const Container = styled.div`
-  background-color: pink;
   width: 100%;
   position: relative;
-  height: 3000px;
 `;
