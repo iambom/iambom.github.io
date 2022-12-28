@@ -2,14 +2,14 @@ import { graphql, Link } from 'gatsby';
 import * as React from 'react';
 
 import Bio from '../components/bio';
-import Layout from '../components/layout';
+import Layout from '../components/Layout/index';
 import Seo from '../components/seo';
 
-const BlogPostTemplate = ({ data: { previous, next, site, markdownRemark: post }, location }) => {
+const BlogPostTemplate = ({ data: { previous, next, site, markdownRemark: post } }) => {
   const siteTitle = site.siteMetadata?.title || `Title`;
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout title={siteTitle}>
       <article className="blog-post" itemScope itemType="http://schema.org/Article">
         <header>
           <h1 itemProp="headline">{post.frontmatter.title}</h1>

@@ -3,17 +3,17 @@ import * as React from 'react';
 
 import Bio from '../components/bio';
 import HomeTagsList from '../components/HomeTagsList';
-import Layout from '../components/Layout/index.tsx';
+import Layout from '../components/Layout/index';
 import PostsList from '../components/PostsList';
 import Seo from '../components/seo';
 
-const BlogIndex = ({ data, location }) => {
+const BlogIndex = ({ data }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`;
   const posts = data.allMarkdownRemark.nodes;
 
   if (posts.length === 0) {
     return (
-      <Layout location={location} title={siteTitle}>
+      <Layout title={siteTitle}>
         <Bio />
         <p>
           No blog posts found. Add markdown posts to "content/blog" (or the directory you specified for the
@@ -25,7 +25,7 @@ const BlogIndex = ({ data, location }) => {
   // console.log(posts);
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout title={siteTitle}>
       <Bio />
       <HomeTagsList />
       <PostsList posts={posts} />
