@@ -6,7 +6,9 @@ const Header = ({ title }) => {
   return (
     <Container>
       <Wrapper>
-        <Link to="/">{title}</Link>
+        <h1>
+          <Link to="/">{title}</Link>
+        </h1>
       </Wrapper>
     </Container>
   );
@@ -26,15 +28,12 @@ const Container = styled.header`
 `;
 
 const Wrapper = styled.div`
-  max-width: 1280px;
+  max-width: 1024px;
   margin: 0 auto;
-  line-height: 60px;
+  height: 100%;
 
-  a {
-    font-family: 'MontserratVariable', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-      'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    font-size: 32px;
-    color: #000;
-    font-weight: bold;
+  h1 {
+    margin: 0;
+    line-height: 60px;
   }
 `;

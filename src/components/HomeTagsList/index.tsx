@@ -27,10 +27,10 @@ const HomeTagsList = () => {
 export default HomeTagsList;
 
 const Container = styled.div`
-  width: 200px;
+  width: 180px;
   position: absolute;
-  top: 20px;
-  left: 40px;
+  top: 50px;
+  left: -220px;
 
   p {
     width: 100%;
@@ -43,7 +43,7 @@ const Container = styled.div`
 const StyledUl = styled.ul`
   li {
     font-size: 14px;
-    line-height: 2;
+    list-style: none;
     a {
       color: black;
     }

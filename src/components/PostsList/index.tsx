@@ -10,16 +10,22 @@ const PostsList = ({ posts }) => {
 
         return (
           <StyledLi key={post.fields.slug}>
-            <Link to={post.fields.slug} itemProp="url">
-              <h2>{title}</h2>
-              <small>{post.frontmatter.date}</small>
+            <article className="post-list-item">
+              <header>
+                <h2>
+                  <Link to={post.fields.slug} itemProp="url">
+                    {title}
+                  </Link>
+                </h2>
+                <small>{post.frontmatter.date}</small>
+              </header>
               <p
                 dangerouslySetInnerHTML={{
                   __html: post.frontmatter.description || post.excerpt,
                 }}
                 itemProp="description"
               />
-            </Link>
+            </article>
           </StyledLi>
         );
       })}
@@ -29,19 +35,22 @@ const PostsList = ({ posts }) => {
 
 export default PostsList;
 
-const Container = styled.div`
+const Container = styled.ul`
   background-color: white;
   width: 100%;
   max-width: 720px;
   margin: 0 auto;
+
+  small {
+    color: gray;
+  }
 `;
 
 const StyledLi = styled.li`
-  border-bottom: 1px solid #f1f3f5;
+  list-style: none;
 
   a {
     display: block;
-    padding: 30px 0;
     color: black;
   }
 `;

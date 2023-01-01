@@ -26,7 +26,7 @@ const BlogIndex = ({ data }) => {
 
   return (
     <Layout title={siteTitle}>
-      <Bio />
+      {/* <Bio /> */}
       <HomeTagsList />
       <PostsList posts={posts} />
       {/* <ol style={{ listStyle: `none` }}>
