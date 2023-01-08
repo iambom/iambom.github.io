@@ -2,6 +2,11 @@
 title: React Native Firebase Cloud Messaging Push Notification
 date: '2023-01-02T16:00:00.169Z'
 description: FCM으로 푸시 알림 구현하기
+tags:
+  - android
+  - ios
+  - React Native
+  - FCM
 ---
 
 ## 1. 프로젝트에 firebase 설치

@@ -2,23 +2,20 @@ import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import React from 'react';
 
-const HomeTagsList = () => {
+const HomeTagsList = ({ tags }) => {
   return (
     <Container>
       <p>태그 목록</p>
       <StyledUl>
-        <li>
-          <Link to="/">전체 보기</Link>
-          <span> (5)</span>
-        </li>
-        <li>
-          <Link to="/">React</Link>
-          <span> (2)</span>
-        </li>
-        <li>
-          <Link to="/">React Native</Link>
-          <span> (3)</span>
-        </li>
+        {tags.map((tag, index) => {
+          const link = tag.fieldValue.replace(' ', '-');
+          return (
+            <li key={index}>
+              <Link to={`/tags?q=${link}`}>{tag.fieldValue}</Link>
+              <span> ({tag.totalCount})</span>
+            </li>
+          );
+        })}
       </StyledUl>
     </Container>
   );

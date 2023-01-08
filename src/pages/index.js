@@ -10,6 +10,7 @@ import Seo from '../components/seo';
 const BlogIndex = ({ data }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`;
   const posts = data.allMarkdownRemark.nodes;
+  const tags = data.allMarkdownRemark.group;
 
   if (posts.length === 0) {
     return (
@@ -22,12 +23,11 @@ const BlogIndex = ({ data }) => {
       </Layout>
     );
   }
-  // console.log(posts);
 
   return (
     <Layout title={siteTitle}>
       {/* <Bio /> */}
-      <HomeTagsList />
+      <HomeTagsList tags={tags} />
       <PostsList posts={posts} />
       {/* <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
@@ -78,6 +78,11 @@ export const pageQuery = graphql`
       }
     }
     allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
+      group(field: frontmatter___tags) {
+        fieldValue
+        totalCount
+      }
+
       nodes {
         excerpt
         fields {

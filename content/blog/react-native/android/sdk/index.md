@@ -2,6 +2,8 @@
 title: Android SDK version 설정 이해하기
 date: '2023-01-03T10:22:00.169Z'
 description: Android SDK version 설정 이해하기
+tags:
+  - android
 ---
 
 push-notification 을 구현하며 로컬 알림을 위해 notifee 라이브러리를 사용하고 에뮬레이터 빌드를 하는데 에러가 났다. 관련 에러를 찾아보니 <a href="https://github.com/invertase/notifee/issues/528" target="_blank">notifee 라이브러리</a>에서 compileSdkVersion 버전을 올려야 한다고 했다.
