@@ -48,3 +48,15 @@ const Component = ({ onClick }) => {
   return <button onClick={() => onClick?.(id)}>삭제</button>;
 };
 ```
+
+### 'onChange' is specified more than once, so this usage will be overwritten.
+
+spread 를 썼으면 onChange 를 뒤에다 써주어야 함
+
+```tsx
+// before (error)
+<Switch onChange={onChange} {...args} />;
+
+// after (fix)
+<Switch {...args} onChange={onChange} />;
+```
