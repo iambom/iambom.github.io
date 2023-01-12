@@ -60,3 +60,30 @@ spread 를 썼으면 onChange 를 뒤에다 써주어야 함
 // after (fix)
 <Switch {...args} onChange={onChange} />;
 ```
+
+### Property '' does not exist on type 'Window & typeof globalThis'.
+
+- typescript 는 window 객체에 대한 정의를 해주지 않으면 에러 발생
+- global.d.ts 파일을 `tsconfig.json` 에 넣어 주라고 하지만 안 넣어도 되길래 일단 안 넣음
+
+```tsx
+// global.d.ts
+declare interface Window {
+  ReactNativeWebView: any;
+}
+```
+
+```tsx
+// AppListenter.tsx
+export default AppListener = () {
+	window.ReactNativeWebView.postMessage(JSON.stringify({ type: 'EXIT_APP' }));
+}
+```
+
+```tsx
+// tsconfig.json
+{
+	"compilerOptions": { ... }
+	"include": ["src", "global.d.ts"]
+}
+```
