@@ -21,3 +21,13 @@ tags:
     3. file > Invalidate Caches / Restart
     4. 안드로이드 스튜디오 종료 > 다시 키고 > 에뮬레이터 켜기
     5. yarn android
+
+### increment_version_number': [!] undefined method `gsub!' for nil:NilClass
+
+```tsx
+
+android/fastlane/fastfile 에서 versionName 가져올 때 나는 에러.
+
+android/app/build.gradle 에서 versionName: “1.0” 으로 되어 있는 것 “1.0.0” 으로 3자리로 변경
+
+```
