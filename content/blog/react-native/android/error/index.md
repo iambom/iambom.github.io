@@ -31,3 +31,14 @@ android/fastlane/fastfile 에서 versionName 가져올 때 나는 에러.
 android/app/build.gradle 에서 versionName: “1.0” 으로 되어 있는 것 “1.0.0” 으로 3자리로 변경
 
 ```
+
+### google api error invalid request - the android app bundle was signed with the wrong key. found sha1
+
+[https://stackoverflow.com/questions/54314838/googleplay-wrong-signing-key-for-app-bundle](https://stackoverflow.com/questions/54314838/googleplay-wrong-signing-key-for-app-bundle)  
+안드로이드 앱을 플레이스토어에 올리려면 배포할 때, 자신의 코드 서명 인증서로 서명을 해야한다. 이후 이 서명이 동일해야 플레이스토어에서 앱 업데이트를 할 수 있다.
+안드로이드 앱의 코드 서명 인증서를 만드는 방법은 2가지가 있다.
+
+1. 안드로이드 스튜디오에서 만들기
+2. Keytoll 로 만들기
+
+따라서, 안드로이드 스튜디오에서 KeyStore를 생성해준다. (참고: [https://www.ihee.com/726](https://www.ihee.com/726))
