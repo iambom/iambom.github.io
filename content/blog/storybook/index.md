@@ -16,3 +16,37 @@ tags:
 control에서 보이고 싶지 않는 props 들은 아래처럼 <b>argTypes</b>에 해당 props에서 `table: {disable: true}` 을 추가해주면 control table에서 보이지 않는다.
 
 ![control table disable no show](./control-table.jpeg)
+
+### useArgs()
+
+스토리북의 controls에서 컴포넌트의 props를 다루면서 스토리북에서의 상태를 변경하고 싶을 때 사용한다.
+예를 들어, 컴포넌트에 label props와 label 아래 description 이라는 props 가 있을 때, label의 기본 폰트 사이즈가 medium 이고, description이 있을 때는 small로 변경되어야 하는 경우, 컴포넌트에서는 그렇게 되도록 css 처리를 해주었지만 스토리북에는 적용되지 않는다.  
+스토리북의 label의 fontSize control이 medium에 선택되어 있을 때, description props가 있을 경우 자동으로 small 로 변경될 수 있도록 스토리북에서 제공하는 useArgs() hook을 사용해서 만들어준다.
+
+```tsx
+// Switch.stories.tsx
+import { useArgs } from '@storybook/client-api';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { useEffect } from 'react';
+
+import Switch from '.';
+
+export default {
+  title: 'Components/Switch',
+  component: Switch,
+} as ComponentMeta<typeof Switch>;
+
+const Template: ComponentStory<typeof Switch> = args => {
+  const [{ description }, updateArgs] = useArgs();
+
+  useEffect(() => {
+    if (description) {
+      updateArgs({ fontSize: 'small' });
+    }
+  }, [description]);
+
+  return <Switch {...args} />;
+};
+
+export const Default = Template.bind({});
+```
