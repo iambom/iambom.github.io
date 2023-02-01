@@ -6,6 +6,77 @@ tags:
   - storybook
 ---
 
+### decorator
+
+프로젝트의 reset.css 를 storybook 에서도 적용되게 하려면 decorator 를 사용해서 전역 스타일을 줄 수 있다.
+GlobalStyles 컴포넌트를 하나 만들어서 .storybook/preview.js 에서 전역적으로 주입해줄 수 있다.
+
+```tsx
+// GlobalStyles.tsx
+import { css, Global } from '@emotion/react';
+
+const GlobalStyles = () => (
+  <Global
+    styles={css`
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 10px;
+      }
+    `}
+  />
+);
+
+export default GlobalStyles;
+```
+
+```tsx
+// .storybook/preview.js
+import GlobalStyles from '../src/components/GlobalStyles';
+
+export const decorators = [
+  Story => (
+    <>
+      <GlobalStyles />
+      <Story />
+    </>
+  ),
+];
+```
+
+또한 스토리북에서 개별 컴포넌트에 스타일을 주고 싶을 때 해당 컴포넌트 스토리북 파일에서 decorator 로 넣어주면 된다.
+
+```tsx
+// Button.stories.tsx
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { useEffect } from 'react';
+
+import Button from '.';
+
+export default {
+  title: 'Components/Button',
+  component: Button,
+  // 배경 컬러 yellow 로 설정
+  decorators: [
+    Story => (
+      <div style={{ backgroundColor: 'yellow' }}>
+        <Story />
+      </div>
+    ),
+  ],
+} as ComponentMeta<typeof Button>;
+
+const Template: ComponentStory<typeof Button> = args => <Button {...args} />;
+
+export const Default = Template.bind({});
+```
+
+![decorator 예시](./decorator-ex.jpeg)
+
 ### Control
 
 스토리북에서 props를 타입에 따라 컨트롤 할 수 있게 해줘 props 에 따라 해당 컴포넌트가 어떻게 변경되는지 확인할 수 있다.
@@ -15,7 +86,31 @@ tags:
 
 control에서 보이고 싶지 않는 props 들은 아래처럼 <b>argTypes</b>에 해당 props에서 `table: {disable: true}` 을 추가해주면 control table에서 보이지 않는다.
 
-![control table disable no show](./control-table.jpeg)
+```tsx
+// Button.stories.tsx
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { useEffect } from 'react';
+
+import Button from '.';
+
+export default {
+  title: 'Components/Button',
+  component: Button,
+  argTypes: {
+    onClick: {
+      table: {
+        disable: true,
+      },
+    },
+  },
+} as ComponentMeta<typeof Button>;
+
+const Template: ComponentStory<typeof Button> = args => <Button {...args} />;
+
+export const Default = Template.bind({});
+```
+
+![control table disable no show](./control-table-disable.jpeg)
 
 ### useArgs()
 
