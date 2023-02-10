@@ -63,5 +63,28 @@ const Component = () => {
 }
 ```
 
+## Yarn Berry
+
+yarn은 1.22 버전을 마지막으로 Classic 버전의 관리를 중단하고, 2.X 이후 부터는 `Yarn Modern (Yarn Berry)` 이라 부르고 새로운 구조로 패키지를 관리한다. 압축 파일을 통한 패키지 의존성 관리, pnp를 통한 zero-install 이 주된 내용이다.
+
+### 의존성 관리
+
+yarn berry에서 주요 지원 사항 중 하나가 패키지들을 zip 파일로 관리하는 것이다. 각 패키지들 간의 의존성은 **.pnp.js** 라는 파일에서 일괄적으로 관리해서 빠르고 명확하게 의존 관계를 정리한다.
+
+### Zero-install
+
+zero-install 은 말 그대로 설치를 하지 않고 이용하는 방식을 말한다.
+
+`yarn install` 로 의존성을 설치 했을 때, node_modules를 생성하지 않는다. 대신 패키지의 압축파일을 `.yarn/cache` 폴더에 수평적으로 저장하는 방식이다. 이 방식을 Yarn은 Plug’n’Play (pnp) 라고 부른다. 압축파일은 ZipFS 를 이용하며 해당 모듈 로드가 필요할 때 메모리에서 압축을 해제하여 접근한다. `.pnp.cjs` 파일에 의존성을 찾을 수 있는 정보가 기록된다.
+
+.pnp.cjs 를 이용하면 디스크 I/O 없이 어떤 패키지가 어떤 라이브러리에 의존하는지, 각 라이브러리는 어디에 위치하는 지를 바로 알 수 있다.
+
 참고
-[npm과-yarn의-차이점](https://joshua1988.github.io/vue-camp/package-manager/npm-vs-yarn.html#npm%E1%84%80%E1%85%AA-yarn%E1%84%8B%E1%85%B4-%E1%84%8E%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%A5%E1%86%B7)
+
+- [npm과-yarn의-차이점](https://joshua1988.github.io/vue-camp/package-manager/npm-vs-yarn.html#npm%E1%84%80%E1%85%AA-yarn%E1%84%8B%E1%85%B4-%E1%84%8E%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%A5%E1%86%B7)
+
+- [node_modules로부터 우리를 구원해 줄 Yarn Berry](https://toss.tech/article/node-modules-and-yarn-berry)
+
+- [https://all-dev-kang.tistory.com/entry/리액트-유령-의존성부터-시작된-yarn-berry-도입기](https://all-dev-kang.tistory.com/entry/%EB%A6%AC%EC%95%A1%ED%8A%B8-%EC%9C%A0%EB%A0%B9-%EC%9D%98%EC%A1%B4%EC%84%B1%EB%B6%80%ED%84%B0-%EC%8B%9C%EC%9E%91%EB%90%9C-yarn-berry-%EB%8F%84%EC%9E%85%EA%B8%B0)
+
+- [https://channel.io/ko/blog/frontend_yarnberry](https://channel.io/ko/blog/frontend_yarnberry)
