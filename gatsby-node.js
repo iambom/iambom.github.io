@@ -5,10 +5,12 @@
  */
 
 const path = require(`path`);
+const _ = require('lodash');
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
 // Define the template for blog post
 const blogPost = path.resolve(`./src/templates/blog-post.js`);
+const tagTemplate = path.resolve('src/templates/tags.js');
 
 /**
  * @type {import('gatsby').GatsbyNode['createPages']}
@@ -28,7 +30,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         }
       }
 
-      tags: allMarkdownRemark {
+      tagsGroup: allMarkdownRemark {
         group(field: { frontmatter: { tags: SELECT } }) {
           fieldValue
         }
@@ -59,6 +61,19 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           id: post.id,
           previousPostId,
           nextPostId,
+        },
+      });
+    });
+    // Extract tag data from query
+    const tags = result.data.tagsGroup.group;
+
+    // Make tag pages
+    tags.forEach(tag => {
+      createPage({
+        path: `/tags/${_.kebabCase(tag.fieldValue)}/`,
+        component: tagTemplate,
+        context: {
+          tag: tag.fieldValue,
         },
       });
     });
