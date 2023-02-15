@@ -141,3 +141,14 @@ spread 를 썼으면 onChange 를 뒤에다 써주어야 함
 // after (fix)
 <Switch {...args} onChange={onChange} />;
 ```
+
+### Component cannot be used as a JSX component. Its return type 'void' is not a valid JSX element.
+
+- return 을 안 썼을 때
+- 괄호로 작성해야 하는 부분을 중괄호로 작성했을 때
+- 함수명과 컴포넌트 명이 같을 때
+  ```jsx
+  const IconButton = () => {
+    <IconButton>{children}</IconButton>;
+  };
+  ```
