@@ -152,3 +152,31 @@ spread 를 썼으면 onChange 를 뒤에다 써주어야 함
     <IconButton>{children}</IconButton>;
   };
   ```
+
+### Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+
+- ref를 props로 전달하려 할 때 발생하는 에러 (ref 는 DOM을 직접 조작하기 위해 사용하는데 props로 넘기려니 발생하게 됨)
+- 리액트에서는 이를 위해 Forwarding Ref라는 기법을 제공해 ref를 전달할 수 있음. 즉, forwardRef() 함수로 ref를 전달하는 부모 컴포넌트와 전달받는 자식 컴포넌트를 감싸주면 props를 전달하는 것처럼 전달해 사용 가능
+
+```tsx
+const Input = React.forwardRef<HTMLInputElement, Props>(function Input({ id, label, errorMessage, ...props }, ref) {
+  return (
+    <Container>
+      {label && id && <Label htmlFor={id}>{label}</Label>}
+
+      <InputWrapper>
+        <StyledInput id={id} ref={ref} hasError={!!errorMessage} {...props} />
+        <div></div>
+      </InputWrapper>
+
+      {errorMessage && (
+        <ErrorTextWrapper>
+          <Typography textColor="error" size="p3">
+            {errorMessage}
+          </Typography>
+        </ErrorTextWrapper>
+      )}
+    </Container>
+  );
+});
+```
