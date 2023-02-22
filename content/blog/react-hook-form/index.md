@@ -210,3 +210,48 @@ const Login = () => {
 export default Login;
 
 ```
+
+하지만 `react-hook-form` 라이브러리를 사용하게 되면 아래처럼만 사용하면 되어서 input 입력과 관련된 상태가 현저히 줄어들어 폼 관리 하기에 매우 효율적이다.
+register 사용할 때
+
+```
+interface ILoginForm {
+  id: string;
+  password: string;
+}
+
+const Login = () => {
+  const {
+    register,
+    setError,
+    formState: { errors },
+    reset,
+    handleSubmit,
+  } = useForm<ILoginForm>({ mode: 'onSubmit' });
+
+  const onSubmit: SubmitHandler<ILoginForm> = data => {
+    if (!!data.id && !!data.password) {
+      reset({ id: '', password: '' });
+      console.log('로그인 api 요청', data);
+    }
+  };
+
+  return (
+    <Container>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Input id="id" label="아이디" {...register('id')} errorMessage={errors.id?.message ? errors.id?.message : undefined} />
+        <Input
+          id="password"
+          label="비밀번호"
+          type="password"
+          {...register('password')}
+          errorMessage={errors.password?.message ? errors.password?.message : undefined}
+        />
+        <div>
+          <button>로그인</button>
+        </div>
+      </form>
+    </Container>
+  );
+
+```
