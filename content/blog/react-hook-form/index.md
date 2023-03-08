@@ -255,3 +255,91 @@ const Login = () => {
   );
 
 ```
+
+Controller 를 사용할 때
+
+```
+const { control, setValue, handleSubmit } = useForm<ILoginForm>({
+    defaultValues: {
+      id: '',
+      password: '',
+      switch: true,
+    },
+  });
+
+
+const onSubmit: SubmitHandler<ILoginForm> = values => {
+  console.log('SUCCESS: rules의 유효성 검사 에러 없이 통과 되면 호출', values);
+};
+
+const onError: SubmitErrorHandler<ILoginForm> = errors => {
+  console.log('ERROR: rules의 유효성 검사에 걸리면 호출', errors);
+};
+
+return (
+    <Container>
+      <form noValidate onSubmit={handleSubmit(onSubmit, onError)}>
+        <Controller
+          name="id"
+          control={control}
+          rules={{
+            required: '아이디를 입력해주세요',
+          }}
+          render={({ field, fieldState }) => (
+            <Input
+              id="id"
+              label="아이디"
+              placeholder="아이디입력"
+              required
+              handleReset={() => setValue('id', '')}
+              errorMessage={fieldState.error ? fieldState.error.message : undefined}
+              {...field}
+            />
+          )}
+        />
+
+        <Controller
+          name="password"
+          control={control}
+          rules={{
+            required: '비밀번호를 입력해주세요',
+          }}
+          render={({ field, fieldState }) => (
+            <Input
+              id="password"
+              label="비밀번호"
+              placeholder="비밀번호 입력"
+              required
+              type={`${showPassword ? 'text' : 'password'}`}
+              errorMessage={fieldState.error ? fieldState.error.message : undefined}
+              suffix={
+                <button type="button" onClick={() => setShowPassword(!showPassword)}>
+                  <Icon name={`${showPassword ? 'showOn' : 'showOff'}`} />
+                </button>
+              }
+              {...field}
+            />
+          )}
+        />
+
+        <Controller
+          name="switch"
+          control={control}
+          render={({ field }) => (
+            <Switch
+              id="switch"
+              checked={field.value}
+              label="토글 스위치"
+              {...field}
+              value="switch"
+            />
+          )}
+        />
+
+        <div>
+          <button type="submit">로그인</button>
+        </div>
+      </form>
+    </Container>
+  );
+```
